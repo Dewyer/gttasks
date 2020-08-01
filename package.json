@@ -1,0 +1,8 @@
+{
+  "name": "gttasks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Dewyer/gttasks.git",
+  "author": "Barnabás Rátki <barna.ratki@gmail.com>",
+  "license": "MIT"
+}
