@@ -1,0 +1,2 @@
+10 input "hanyszor irja ki a kodjat:"; a%
+20 for i=1 to a%: print "wpd2w5": next 
