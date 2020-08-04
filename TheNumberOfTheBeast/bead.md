@@ -1,0 +1,29 @@
+Rex link : https://rextester.com/XKNKTE74949
+
+A második feladatban a teljes c64 basic program forráskódja (Vice emulátorral lett testelve) :
+10 input "key "; gkey$
+20 input "txt "; gtxt$
+30 key$ = gkey$
+40 txt$ = gtxt$
+50 mut = 1
+60 gosub 1000
+70 print "text encrypted: " + cip$
+80 txt$ = cip$
+90 mut = -1
+100 gosub 1000
+110 print "text again: " + cip$
+420 end
+1000 ki = 1
+1010 cip$ = ""
+1020 for c = 1 to len(txt$) step 1
+1030 tc$ = mid$(txt$,c,1)
+1040 kc$ = mid$(key$,ki,1)
+1050 ki = ki +1
+1060 if ki = len(key$)+1 then ki = 1
+1070 ni = (asc(tc$)-65) + (mut*(asc(kc$)-65))
+1080 if ni >= 26 then ni = ni - 26
+1090 if ni < 0 then ni = 26+ni
+1091 ncc$ = chr$(ni+65)
+1100 cip$ = cip$+ncc$
+1110 next c
+1120 return
