@@ -1,5 +1,7 @@
-//uncomment if you want to compile the benchmarks :S#![feature(test)]
-//this as well : extern crate test;
+//Uncomment if you are on nightly (needed to build tests):
+#![feature(test)]
+
+#[cfg(test)]extern crate test;
 
 fn main() {
 	// The key that should be used run our one-time test
@@ -16,8 +18,6 @@ fn main() {
 	println!("Cypher-text: {}, Text Again: {}", c1, text_again);
 }
 
-/// Hahahha, rextester does not compile the tests so this whole code is copiable to the site.
-/// Otherwise the compilation would fail on missing crates
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -52,7 +52,7 @@ mod tests {
 		let mut rng = rand::thread_rng();
 		let sizer = Uniform::from(1..100);
 
-		for ii in 0..1000
+		for _ in 0..10000
 		{
 			run_fuzz_iteration(&mut rng, &sizer,output_chars_type);
 		}
@@ -60,9 +60,16 @@ mod tests {
 
 	/// Key length zero is invalid
 	#[test]
-	fn invalid_key()
+	fn invalid_key_because_zero_len()
 	{
 		let cip = key_sub_cypher::KeySubCypher::new("");
+		assert!(cip.is_err());
+	}
+
+	#[test]
+	fn invalid_key_because_alphabet()
+	{
+		let cip = key_sub_cypher::KeySubCypher::new("áááá");
 		assert!(cip.is_err());
 	}
 
@@ -135,7 +142,7 @@ pub mod key_sub_cypher
 		/// Creates a new Key(ed) substituion cypher with the given string as the key
 		pub fn new(key: &str) -> Result<Self, KeySubCypherError>
 		{
-			if key.len() != 0
+			if Self::is_valid_key(key)
 			{
 				Ok(Self
 				{
@@ -144,6 +151,18 @@ pub mod key_sub_cypher
 			} else {
 				Err(KeySubCypherError::InvalidKey)
 			}
+		}
+
+		fn is_valid_key(key:&str) -> bool
+		{
+			for cc in key.chars()
+			{
+				if Self::get_character_index_in_alphabet(&cc).is_err()
+				{
+					return false
+				}
+			}
+			return key.len() != 0;
 		}
 
 		/// Returns the index, if any of the given character in the uppercase alphabet, returns an error if the character is not present in the alphabet
