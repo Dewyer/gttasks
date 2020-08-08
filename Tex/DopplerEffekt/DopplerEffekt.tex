@@ -1,0 +1,42 @@
+\documentclass{article}[12pt,a4paper]
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{amsmath} 
+\usepackage{hyperref}
+\usepackage{csquotes}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\title{"D" effektus}
+\author{Rátki Barnabás}
+\date{2020.08.08}
+
+\begin{document}
+\maketitle
+
+A megoldandó feladat a következő volt: 
+\begin{displayquote}
+Beadandó: A rakéta sebessége a Tatain fölött méter/sec mértékegységben (1 pont), továbbá a rakétás távolsága az űrhajótól méterben (1 pont), mindkét mennyiség a legközelebbi egész számra kerekítve. A hang terjedési sebessége 340 m/s. 
+\end{displayquote}
+
+\section{Megoldás}
+Felfedezhetjük, hogy a feladat címe okosan a Doppler Effektusra utal. A feladatban a rakéta a megfigyelőhöz először közelítő majd tőle távolodó hullámforrás. Továbbá az is kiderül, hogy a közeledés utolsó pillanatában lévő frekvenciára ($f_1$), és a távolodás első pillanatában lévő frekvenciára ($f_2$) a következő összefüggés igaz: $f_1 \cdot 0,6 = f_2$.\par
+A Doppler effektus ismeretében felírhatók az alábbi összefüggések is: $$f_1 = f_0\cdot\frac{c}{c-v}$$ Ahol $c$ a hullám sebessége, jelen esetünkben a hangsebesség (340 m/s). $v$ pedig a hullámforrás radiális sebessége. Ez a sebesség megközelíti a rakéta egyenes vonalú pillanatnyi sebességét ( A valóságban, nem teljesen a megfigyelő felé megy a rakéta mert végül nem is találja el, de a szöveg szerint csak pár centire véti el őket ezért a különbségtől eltekintünk ). Illetve távolodó a frekvencia: $$f_2 = f_0\cdot\frac{c}{c+v}$$ $v$ előjele azért fordult meg mert radiális sebességként a távolodás miatt negatív lesz. Azt is feltételezzük, hogy $f_1$ és $f_2$ kibocsátott frekvencia között eltelt idő nulla tehát a test sebessége nem változik.\par
+A fentiek alapján a következő összefüggést írhatjuk fel: $$f_0\cdot\frac{c}{c-v} \cdot 0,6 = f_0\cdot\frac{c}{c+v}$$ Rendezés után következőre jutunk: $$v = 0,25\cdot c$$ $c$-t behelyettesítve megkapjuk, hogy $v = 85 \frac{m}{s}$ Ez pontosan a rakéta pillanatnyi sebessége Tatain melletti elhaladáskor.
+
+\subsection{Rakétakilövő távolsága}
+Tudjuk, hogy a rakéta sebessége az alábbiak szerint változik: \begin{displayquote}A kilövés utáni első másodpercben a lövedék sebessége konstans 240 m/s, majd további három másodperc alatt lineárisan nullára csökken.\end{displayquote}
+Tehát a mozgás második felében a rakéta egyenletes vonalú egyenletesen lassuló mozgást végez, ahol $a = -\frac{240}{3} \frac{m}{s^2} = -80 \frac{m}{s^2}$. Mivel a rakéta pillanatnyi sebessége nem 240 m/s ezért tudjuk, hogy mozgásának ebben a lassuló szakaszában van, tehát a lassulással eltöltött idő megkapható az alábbi módon: $$v = 240 + a \cdot t_{lassulas}$$ Ezt $t_{lassulas}$-ra rendezve, $v$ behelyettesítése után: $$t_{lassulas} = 1,9375\ s$$.
+Ezek alapján a rakéta álltal lassulással megtett út kiszámítható: $$s_{lassulas} = v_0\cdot t_{lassulas} + \frac{a}{2} \cdot t^2$$. Behelyettesítés után: $s_{lassulas} = 314.84375\ m$. A lassulás előtt a rakéta még 1 másodpercig 240 m/s-el halad tehát megtesz 240 métert. Az össz. út amit a rakéta megtett tehát: $s = 240\ m + 314.84375\ m = 554.84375\ m$. A rakéta a kilövéstől számítva ennyi utat tett meg, tehát a rakétakilövő ilyen távolságban helyezkedik el.
+
+\section{Összegzés}
+
+A rakéta sebessége a Tatain fölött: $85 \frac{m}{s}$.
+A rakétás távolsága az űrhajótól: $555\ m$ ( Kerekítve )
+
+\end{document}
