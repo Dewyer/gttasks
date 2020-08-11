@@ -1,0 +1,17 @@
+1 prob = 0.32 : n% = 6 :nev$="hos"
+2 gosub 101
+3 prob = 0.40 : n% = 5 :nev$="ben"
+4 gosub 101
+100 end
+101 max% = 600 : ss% = 0
+102 for ii=1 to max% step 1
+103 cc% = 0
+104 for k=1 to n% step 1
+106 if rnd(1)<=prob then cc%=cc%+1
+107 next k
+109 if cc%<=2 then ss%=ss%+1
+111 next ii
+113 print nev$,ss%/max%,str$(int(ss%/max%*100+0.5))+"%"
+114 return
+
+https://rextester.com/KYRZ97386

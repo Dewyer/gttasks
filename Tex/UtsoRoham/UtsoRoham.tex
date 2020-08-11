@@ -1,0 +1,59 @@
+\documentclass{article}[12pt,a4paper]
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{amsmath} 
+\usepackage{hyperref}
+\usepackage{csquotes}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\title{Az utolsó roham délre}
+\author{Rátki Barnabás}
+\date{2020.08.10}
+
+\begin{document}
+\maketitle
+
+A feladat leírása a következő volt: \begin{displayquote}
+-Oké, haver. Kihúzzuk. Van nálam egy személyi pajzs, egyszer bekapcsolható, aztán tart azon, akin bekapcsolták, ameddig bírja. Két találatot kibír. Hármat nem.
+
+-Az optimális megoldás a következő: egyikünk bekapcsolja magán a pajzsot, odarohan, rángatja kifelé teljes erővel, visszafut, pihen. Ezt ismételgetve addig, amíg az utolsó ráfutás során teljesen kiszabadítja a kolleginát, továbbküldi a Tatainhoz, és visszafut, hogy két mozgó célpont legyen, ne egy.
+
+-Lássuk az esélyeket! Én gyors vagyok, de hatszor kell ráfutnom, mindegyik alkalommal 32\% az esélye, hogy eltalálnak.
+
+-Ben, én lassabb vagyok, de erősebb, nekem öt ráfutás elég, de egy ráfutás alatt 40\%, hogy eltalálnak.
+
+-Akkor gyorsan számoljuk ki, melyikünknek érdemesebb menni...
+\end{displayquote} 
+Tehát pontosabban megfogalmazva, mindkét részfeladatban az a kérdés, hogy van $n$ darab próba (a ráfutás) és egy esemény aminek esélye $x$ (az, hogy eltaláljáka  futót), mekkora esélye van annak, hogy $n$ darab próba alatt legfeljebb kétszer következik be az esemény (a találat).
+
+Ez azt jelenti, hogy az esemény vagy pontosan, nullaszor, egyszer, vagy kétszer fordulhat elő, ezeknek a valószínűségének összege lesz a megoldás.
+
+Az, hogy $x$ esélyü esemény $n$ darab próbából pontosan $k$-szor következik be az a következő (mivel az események függetlenek):
+$$ = x^{k} \cdot (1-x)^{n-k} \cdot {n\choose k}$$ (Először, az kell, hogy $x$ "megtörténjen" $k$-szor, utána hogy a maradék alkalommal ne "történjen" meg, és mindezt $nCk$ fajta módon tudjuk megtenni)
+
+\section{Megoldás Hősünkre}
+Behlyettesítve: $x=0.32, n=6$,
+$$k=0 \rightarrow 0,09886748262399994$$
+$$k=0 \rightarrow 0,27915524505599987$$
+$$k=0 \rightarrow 0,32841793535999986$$
+$$\sum k \rightarrow 0,7064406630399996$$
+Tehát a megoldás: $71$\% a hősnek.
+
+\section{Megoldás Benre}
+Behlyettesítve: $x=0.40, n=5$,
+$$k=0 \rightarrow 0,07775999999999998$$
+$$k=0 \rightarrow 0,2592$$
+$$k=0 \rightarrow 0,3456$$
+$$\sum k \rightarrow 0,6825600000000001$$
+Tehát a megoldás: $68$\% Bennek.
+
+\section{Megjegyzés}
+A feladatban nincsen pontosan leírva, hogyan működik a ráfutás, a megoldás során úgy vettem mintha egy oda vissza út találati valószínűsége lenne a megadott százalék. De a legutolsó visszafele úton a szöveg is mondja, hogy két célpont van, ez, hogy jelenik meg az esélyekben ? Erre nem tudom a választ szóval elhanyagoltam ezt a tényezőt.
+
+\end{document}
